@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poseidon Cruise | Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="card login-card">
+            <h2>⚓ Poseidon Systems</h2>
+            <p>Please authenticate to access ship controls.</p>
+            
+            <input type="email" id="email" placeholder="Crew/Voyager Email">
+            <input type="password" id="password" placeholder="Password">
+            
+            <select id="role">
+                <option value="voyager">Voyager (Guest)</option>
+                <option value="admin">System Admin</option>
+                <option value="manager">Manager</option>
+                <option value="head-cook">Head Cook</option>
+                <option value="supervisor">Supervisor</option>
+            </select>
+
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <button id="loginBtn" style="flex:1;">Sign In</button>
+                <button id="regBtn" class="secondary" style="flex:1;">Register</button>
+            </div>
+            <p id="msg" style="margin-top: 15px; font-size: 0.9rem; color: var(--accent);"></p>
+        </div>
+    </div>
+    <script type="module" src="js/auth.js"></script>
+</body>
+</html>

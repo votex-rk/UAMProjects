@@ -1,0 +1,237 @@
+:root {
+    --bg-color: #0f0f11;
+    --accent-color: #00d4ff; /* Cyber blue */
+    --text-main: #ffffff;
+    --text-muted: #a0a0a0;
+    --card-width: 260px; /* Base width for calculation */
+    --card-height: 380px;
+    --font-main: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none; 
+    -webkit-user-select: none;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-main);
+    overflow: hidden; /* Prevent scrollbars during 3D rotation */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Background Ambient Glow */
+body::before {
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, rgba(0,0,0,0) 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+header {
+    position: absolute;
+    top: 30px;
+    text-align: center;
+    z-index: 10;
+}
+
+header h1 {
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 2rem;
+}
+
+header p {
+    color: var(--text-muted);
+    font-weight: 300;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+/* 3D Scene Setup */
+.gallery-container {
+    position: relative;
+    width: var(--card-width);
+    height: var(--card-height);
+    perspective: 1200px; /* Determines the depth of the 3D space */
+    margin-top: 20px;
+}
+
+.carousel {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d; /* Critical for 3D effect */
+    transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1); /* Smooth 'Ease-out-expo' feel */
+}
+
+/* Individual Art Cards */
+.card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s, border-color 0.3s;
+    cursor: pointer;
+    overflow: hidden;
+    /* Reflection effect for floor realism */
+    -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, rgba(0,0,0,0.4));
+}
+
+.card:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.card img {
+    width: 100%;
+    height: 85%;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.card h3 {
+    font-size: 0.9rem;
+    margin-top: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+/* Navigation Controls */
+.controls {
+    position: absolute;
+    bottom: 80px;
+    display: flex;
+    gap: 30px;
+    z-index: 10;
+}
+
+.nav-btn {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--text-muted);
+    padding: 10px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: var(--font-main);
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: var(--text-main);
+    color: var(--bg-color);
+    border-color: var(--text-main);
+}
+
+.instruction {
+    position: absolute;
+    bottom: 30px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* Audio Button */
+.audio-control {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    z-index: 20;
+}
+#music-toggle {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+/* --- MODAL (Zoom View) --- */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 100; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.95); 
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.modal.active {
+    opacity: 1;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 20px;
+}
+
+#modal-img {
+    max-height: 70vh;
+    max-width: 90vw;
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    border: 2px solid #333;
+}
+
+.modal-info {
+    margin-top: 20px;
+    text-align: center;
+    color: #fff;
+    max-width: 600px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: var(--accent-color);
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 768px) {
+    /* Scale down the 3D scene for mobile */
+    .gallery-container {
+        transform: scale(0.65); 
+    }
+    header { top: 15px; }
+    header h1 { font-size: 1.5rem; }
+    .controls { bottom: 50px; }
+    
+    /* Adjust modal for mobile */
+    #modal-img { max-height: 50vh; }
+}

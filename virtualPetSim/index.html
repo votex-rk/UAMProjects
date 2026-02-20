@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neo-Gotchi | Virtual Pet Simulator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game-console">
+        <div class="screen-bezel">
+            <div class="power-light"></div>
+            <span class="brand-text">NEO-GOTCHI</span>
+            
+            <div class="game-screen">
+                <div class="hud">
+                    <div class="stat-group">
+                        <label>HUNGER</label>
+                        <div class="bar-container"><div class="bar-fill" id="bar-hunger"></div></div>
+                    </div>
+                    <div class="stat-group">
+                        <label>HAPPY</label>
+                        <div class="bar-container"><div class="bar-fill" id="bar-happy"></div></div>
+                    </div>
+                    <div class="stat-group">
+                        <label>ENERGY</label>
+                        <div class="bar-container"><div class="bar-fill" id="bar-energy"></div></div>
+                    </div>
+                </div>
+
+                <div class="world">
+                    <div class="sun-moon" id="celestial-body"></div>
+                    
+                    <div id="pet" class="pet-sprite egg">
+                        <div class="face">
+                            <div class="eye left"></div>
+                            <div class="eye right"></div>
+                            <div class="mouth"></div>
+                        </div>
+                        <div class="emotion-bubble" id="emote"></div>
+                    </div>
+
+                    <div id="poop-container"></div>
+                </div>
+
+                <div id="overlay" class="overlay hidden">
+                    <h2 id="overlay-title">GAME OVER</h2>
+                    <p id="overlay-msg">Your pet passed away.</p>
+                    <button id="restart-btn">NEW EGG</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="btn-row">
+                <button class="action-btn" id="btn-feed" title="Feed">🍗<br>FEED</button>
+                <button class="action-btn" id="btn-play" title="Play">🎾<br>PLAY</button>
+                <button class="action-btn" id="btn-sleep" title="Sleep">💤<br>SLEEP</button>
+                <button class="action-btn" id="btn-clean" title="Clean">🧹<br>CLEAN</button>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://www.linkedin.com/in/rudra-kanwar7" target="_blank" class="dev-footer">
+        Developed by <span class="dev-name">Rudra Kanwar</span> <span class="link-icon">↗</span>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>

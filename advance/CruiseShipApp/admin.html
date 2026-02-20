@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Command | Poseidon</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <h1>⚡ Admin Command</h1>
+        <button id="logoutBtn" class="danger">Log Out</button>
+    </nav>
+
+    <div class="container">
+        <div class="grid-3">
+            <div class="glass-card" style="text-align:center;">
+                <h3>Total Orders</h3>
+                <h1 id="countOrders" style="font-size:3rem; margin:10px 0; color:var(--accent)">0</h1>
+            </div>
+            <div class="glass-card" style="text-align:center;">
+                <h3>Registered Users</h3>
+                <h1 id="countUsers" style="font-size:3rem; margin:10px 0; color:#fab1a0">0</h1>
+            </div>
+            <div class="glass-card" style="text-align:center;">
+                <h3>System Status</h3>
+                <h1 style="font-size:3rem; margin:10px 0; color:#55efc4">OK</h1>
+            </div>
+        </div>
+
+        <h2 style="margin-top:40px;">Manage Ship Inventory</h2>
+        <div class="grid-2">
+            <div class="glass-card">
+                <h3>Add New Item</h3>
+                <input type="text" id="itemName" placeholder="Item Name">
+                <input type="number" id="itemPrice" placeholder="Price ($)">
+                <button id="addItemBtn">Add to Database</button>
+            </div>
+            
+            <div class="glass-card">
+                <h3>Current Inventory</h3>
+                <ul id="inventoryList" style="list-style:none; padding:0;"></ul>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="js/admin.js"></script>
+</body>
+</html>

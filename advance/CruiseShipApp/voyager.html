@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Voyager | Poseidon</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <h1><i class="ph-duotone ph-boat"></i> Voyager Deck</h1>
+        <button id="logoutBtn" class="secondary" style="width: auto;"><i class="ph-bold ph-sign-out"></i> Log Out</button>
+    </nav>
+
+    <div class="container">
+        <div class="grid-dashboard">
+            
+            <div class="glass-card">
+                <h2><i class="ph-duotone ph-fork-knife"></i> Room Service</h2>
+                <select id="catType">
+                    <option value="Snacks">Snacks</option>
+                    <option value="Beverages">Beverages</option>
+                    <option value="Meals">Meals</option>
+                </select>
+                <input type="text" id="catItem" placeholder="Item Name...">
+                <button id="orderCatBtn">Order Now</button>
+            </div>
+
+            <div class="glass-card">
+                <h2><i class="ph-duotone ph-ticket"></i> Bookings</h2>
+                <select id="resType">
+                    <option value="Resort">Resort: Ocean View</option>
+                    <option value="Movie">Cinema</option>
+                    <option value="Salon">Salon & Spa</option>
+                    <option value="Fitness">Gym</option>
+                </select>
+                <input type="date" id="resDate">
+                <button id="bookResBtn">Reserve</button>
+            </div>
+
+            <div class="glass-card" style="grid-column: 1 / -1;">
+                <h2>Activity Log</h2>
+                <div class="table-wrapper"> <table>
+                        <thead>
+                            <tr>
+                                <th>Service</th>
+                                <th>Detail</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyList">
+                            <tr><td colspan="3">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="module" src="js/voyager.js"></script>
+</body>
+</html>

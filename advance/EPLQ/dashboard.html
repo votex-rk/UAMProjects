@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPLQ | Dashboard</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <header class="glass-panel glass-header" style="flex-direction: row; padding: 1rem 1.5rem;">
+            <div>
+                <h2 style="margin:0;">EPLQ <span style="font-size:0.8rem; color:var(--accent);">V2.0</span></h2>
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">
+                    <span id="role-badge" style="font-weight: bold;">LOADING...</span> 
+                    | <span id="user-email">...</span>
+                </div>
+            </div>
+            <button id="btn-logout" class="btn btn-danger" style="width: auto; padding: 8px 16px;">Logout</button>
+        </header>
+
+        <div class="dashboard-grid">
+            
+            <aside class="sidebar glass-panel">
+                
+                <div style="margin-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="font-size: 0.9rem; font-weight: 600;">SYSTEM STATUS</span>
+                        <div class="status-badge"><div class="pulse-dot"></div> SECURE</div>
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted);">
+                        AES-256 Encryption Tunnel Active<br>
+                        Zero-Knowledge Proof: ENABLED
+                    </div>
+                </div>
+
+                <div id="admin-panel" class="hidden">
+                    <h3 style="color: var(--accent);">Admin Console</h3>
+                    <p style="font-size: 0.85rem; margin-bottom: 15px;">Upload sensitive POI data. Data is encrypted client-side before upload.</p>
+                    
+                    <form id="form-upload">
+                        <input type="text" id="poi-name" placeholder="Location Name (e.g. City Hospital)" required>
+                        <input type="text" id="poi-desc" placeholder="Details/Alert Message" required>
+                        <select id="poi-type">
+                            <option value="Hospital">Hospital</option>
+                            <option value="Police">Police Station</option>
+                            <option value="Shelter">Emergency Shelter</option>
+                        </select>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="number" id="poi-lat" placeholder="Lat" step="any" required>
+                            <input type="number" id="poi-lng" placeholder="Lng" step="any" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Encrypt & Upload</button>
+                    </form>
+                </div>
+
+                <div id="user-panel" class="hidden">
+                    <h3 style="color: var(--success);">Public Safety Query</h3>
+                    <p style="font-size: 0.85rem;">Search for nearby safe zones. Your location is never sent to the server.</p>
+                    
+                    <button id="btn-geo" class="btn" style="background: rgba(255,255,255,0.1); margin-bottom: 10px;">
+                        📍 Use My Current Location
+                    </button>
+                    
+                    <button id="btn-search" class="btn btn-success">Fetch & Decrypt Nearby Data</button>
+
+                    <div style="margin-top: 20px; font-size: 0.8rem; color: var(--text-muted);">
+                        * Performance metrics will appear here after query.
+                    </div>
+                </div>
+
+            </aside>
+
+            <main class="map-container glass-panel" style="padding: 0; position: relative;">
+                <div id="map"></div>
+                <div style="position: absolute; bottom: 20px; left: 20px; z-index: 999; background: rgba(0,0,0,0.8); padding: 10px; border-radius: 8px; font-size: 0.7rem; color: white;">
+                    Map Source: CartoDB Dark<br>
+                    Encryption: AES-256
+                </div>
+            </main>
+
+        </div>
+    </div>
+    
+    <div id="toast-container"></div>
+
+    <script type="module" src="assets/js/ui.js"></script>
+</body>
+</html>

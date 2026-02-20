@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPLQ | Secure Login</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="app-container full-height" style="display:flex; justify-content:center; align-items:center;">
+        <div class="glass-panel" style="width: 100%; max-width: 400px; text-align: center;">
+            <h1 style="color: var(--accent); margin-bottom: 5px;">EPLQ System</h1>
+            <p style="margin-bottom: 2rem;">Efficient Privacy-Preserving Location Query</p>
+            
+            <div id="auth-forms">
+                <input type="email" id="email" placeholder="Email Address">
+                <input type="password" id="password" placeholder="Password">
+                
+                <button id="btn-login" class="btn btn-primary" style="margin-bottom: 10px;">Login</button>
+                <button id="btn-register" class="btn" style="border: 1px solid var(--accent); color: var(--accent);">Register New ID</button>
+            </div>
+
+            <div style="margin-top: 20px; font-size: 0.8rem; color: var(--text-muted); text-align: left; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px;">
+                <strong>Demo Credentials:</strong><br>
+                Admin: <code>admin@eplq.com</code> / <code>admin123</code><br>
+                User: Any email / Any password (Register first)
+            </div>
+            
+            <div id="toast-container"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+        import { firebaseConfig } from './assets/js/config.js';
+        import { AuthManager } from './assets/js/auth.js';
+
+        const app = initializeApp(firebaseConfig);
+        const auth = new AuthManager(app);
+        const emailEl = document.getElementById('email');
+        const passEl = document.getElementById('password');
+
+        function notify(msg) {
+            const el = document.createElement('div');
+            el.className = 'toast';
+            el.innerText = msg;
+            document.getElementById('toast-container').appendChild(el);
+            setTimeout(()=>el.remove(), 3000);
+        }
+
+        document.getElementById('btn-login').addEventListener('click', async () => {
+            try {
+                await auth.login(emailEl.value, passEl.value);
+                window.location.href = 'dashboard.html';
+            } catch (e) { notify(e.message); }
+        });
+
+        document.getElementById('btn-register').addEventListener('click', async () => {
+            try {
+                await auth.register(emailEl.value, passEl.value);
+                alert("Account Created! You can now login.");
+            } catch (e) { notify(e.message); }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina | Virtual Art Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="audio-control">
+        <button id="music-toggle">Play Ambience 🎵</button>
+        <audio id="bg-music" loop>
+            <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112762.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <header>
+        <h1>LUMINA GALLERY</h1>
+        <p>A Digital Exhibition of Modern Abstract</p>
+        <p>Developed By ~ Rudra Kanwar</p>
+    </header>
+
+    <main>
+        <div class="gallery-container">
+            <div class="carousel" id="carousel">
+                </div>
+        </div>
+
+        <div class="controls">
+            <button id="prev-btn" class="nav-btn">← Prev</button>
+            <button id="next-btn" class="nav-btn">Next →</button>
+        </div>
+        
+        <p class="instruction">Use Arrow Keys or Buttons to Navigate • Click Image for Details</p>
+    </main>
+
+    <div id="art-modal" class="modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <img id="modal-img" src="" alt="Expanded Art">
+            <div class="modal-info">
+                <h2 id="modal-title">Artwork Title</h2>
+                <p id="modal-desc">Description goes here.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
